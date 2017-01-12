@@ -140,6 +140,8 @@
                                     <outlet property="linkButton" destination="v8w-cf-Rhm" id="a99-l0-pV0"/>
                                     <outlet property="mainNameLabel" destination="n1z-Ta-dTo" id="mw5-M5-oqc"/>
                                     <outlet property="mainView" destination="7rh-cQ-gKc" id="d77-fm-s0i"/>
+                                    <outlet property="mainViewLeadingConstraing" destination="Gbf-q8-Lkn" id="xJU-5V-0dY"/>
+                                    <outlet property="mainViewTrailingConstraint" destination="G1T-vf-goC" id="tMU-EU-eAJ"/>
                                     <outlet property="secondNameLabel" destination="DGL-P3-RyS" id="sDS-Qi-Gz8"/>
                                     <outlet property="signImage" destination="t1h-6d-Dox" id="2IJ-s7-KdG"/>
                                     <outlet property="topIndicator" destination="ubS-5j-BiJ" id="uVe-CD-Gcs"/>

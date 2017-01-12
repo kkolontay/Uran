@@ -19,9 +19,14 @@ class ItemOfFileTableViewCell: UITableViewCell {
     @IBOutlet weak var favoriteButton: UIButton!
     @IBOutlet weak var linkButton: UIButton!
     @IBOutlet weak var deleteButton: UIButton!
+    @IBOutlet weak var mainViewLeadingConstraing: NSLayoutConstraint!
+    @IBOutlet weak var mainViewTrailingConstraint: NSLayoutConstraint!
+    var tapGesture: UITapGestureRecognizer?
+    
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        tapGesture = UITapGestureRecognizer(target: self, action: #selector(tupRecognizer(_:)))
+        self.addGestureRecognizer(tapGesture!)
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -29,19 +34,43 @@ class ItemOfFileTableViewCell: UITableViewCell {
         
         // Configure the view for the selected state
     }
+    func tupRecognizer(_ sender: UITapGestureRecognizer) {
+        if mainView.frame.origin.x == 0 {
+            UIView.animate(withDuration: 0.8){
+                self.mainViewLeadingConstraing.constant = -150;
+                self.mainViewTrailingConstraint.constant = -150;
+                self.setViewsButtons(false)
+                self.mainView.layoutIfNeeded()
+            }
+        } else {
+            UIView.animate(withDuration: 0.8){
+                self.mainViewLeadingConstraing.constant = 0;
+                self.mainViewTrailingConstraint.constant = 0;
+                self.setViewsButtons(true)
+                self.mainView.layoutIfNeeded()
+                
+            }
+            
+            
+        }
+    }
+    func setViewsButtons(_ param: Bool) {
+        linkButton.isHidden = param
+        deleteButton.isHidden = param
+        favoriteButton.isHidden = param
+    }
     func setData(item: FileModel) {
-        linkButton.isHidden = true
-        deleteButton.isHidden = true
-        favoriteButton.isHidden = true
-       
+        
+        setViewsButtons(true)
+        
         if item.isOrange == true {
             topIndicator.backgroundColor = UIColor(colorLiteralRed: 255 / 255.0, green: 100 / 255.0, blue: 28 / 255.0, alpha: 1.0)
         } else {
             topIndicator.backgroundColor = UIColor(colorLiteralRed: 0 / 255.0, green: 50 / 255.0, blue: 200 / 255.0, alpha: 1.0)
         }
-       
-            bottomIndicator.backgroundColor = UIColor(colorLiteralRed: 0 / 255.0, green: 50 / 255.0, blue: 200 / 255.0, alpha: 1.0)
-      
+        
+        bottomIndicator.backgroundColor = UIColor(colorLiteralRed: 0 / 255.0, green: 50 / 255.0, blue: 200 / 255.0, alpha: 1.0)
+        
         
         if let type = item.fileType {
             switch type {
