@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Foundation
 
 class ItemOfFileTableViewCell: UITableViewCell {
     @IBOutlet weak var topIndicator: UIView!
@@ -14,6 +15,10 @@ class ItemOfFileTableViewCell: UITableViewCell {
     @IBOutlet weak var signImage: UIImageView!
     @IBOutlet weak var secondNameLabel: UILabel!
     @IBOutlet weak var mainNameLabel: UILabel!
+    @IBOutlet weak var mainView: UIView!
+    @IBOutlet weak var favoriteButton: UIButton!
+    @IBOutlet weak var linkButton: UIButton!
+    @IBOutlet weak var deleteButton: UIButton!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -25,6 +30,10 @@ class ItemOfFileTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     func setData(item: FileModel) {
+        linkButton.isHidden = true
+        deleteButton.isHidden = true
+        favoriteButton.isHidden = true
+       
         if item.isOrange == true {
             topIndicator.backgroundColor = UIColor(colorLiteralRed: 255 / 255.0, green: 100 / 255.0, blue: 28 / 255.0, alpha: 1.0)
         } else {
@@ -50,5 +59,14 @@ class ItemOfFileTableViewCell: UITableViewCell {
         }
         mainNameLabel.text = item.fileName
         secondNameLabel.text = "modified \(item.getDate())"
+    }
+    @IBAction func favoriteButtonPressed(_ sender: Any) {
+        print("favoriteButtonPressed")
+    }
+    @IBAction func deleteButtonPressed(_ sender: Any) {
+        print("deleteButtonPressed")
+    }
+    @IBAction func linkButtonPressed(_ sender: Any) {
+        print("linkButtoonPressed")
     }
 }
